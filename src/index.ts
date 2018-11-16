@@ -31,14 +31,17 @@ var today = format(
 
 students.forEach(student => {
     const _fileName: string = `${student.firstName}.pdf`;
-    const _reportData: string = base64_encode(`${__dirname.replace("build", "data")}\\reports\\${_fileName}`);
+    const _reportData: string = base64_encode(`${__dirname.replace("build", "data")}/reports/${_fileName}`);
+    console.log({message:"sending email", student, _fileName})
     client.sendEmail({
         "From": "mark@suncoast.io",
-        "To": "mark@suncoast.io",
+        "To": student.email,
         "Subject": `Progress Report for ${today}`,
         "HtmlBody": `Hello, ${student.firstName} <br/> Attached is your progress report!`,
-        "Attachments": [
-            new postmark.Attachment(_fileName, _reportData, "application/pdf")
-        ]
+        // "Attachments": [
+        //     new postmark.Attachment(_fileName, _reportData, "application/pdf")
+        // ]
+    }).then( _ => {
+        console.log({message:"email sent", student:student.fullName});
     });
 })

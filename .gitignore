@@ -80,3 +80,4 @@ package-lock.json
 data/students.json
 data/reports/*.pdf
 src/.env
+.env

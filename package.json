@@ -12,7 +12,7 @@
   "scripts": {
     "prestart": "tsc",
     "start": "node build/index.js",
-    "init-env":"cp src/.sample.env src/.env"
+    "init-env":"cp src/.sample.env .env"
   },
   "devDependencies": {
     "@types/node": "^10.12.9",
