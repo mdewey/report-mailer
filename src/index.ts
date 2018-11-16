@@ -2,7 +2,10 @@
 // Postmark stuff
 import postmark = require("postmark");
 
-const client = new postmark.ServerClient("d94d87f4-9883-4d13-bcbd-7b7fab6ea0f9");
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const client = new postmark.ServerClient(process.env.EMAIL_API_KEY);
 
 import format = require('date-fns/format')
 import fs = require("fs");

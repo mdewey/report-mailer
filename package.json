@@ -4,12 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@types/dotenv": "^6.1.0",
     "date-fns": "^1.29.0",
+    "dotenv": "^6.1.0",
     "postmark": "^2.2.0"
   },
   "scripts": {
     "prestart": "tsc",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "init-env":"cp src/.sample.env src/.env"
   },
   "devDependencies": {
     "@types/node": "^10.12.9",
