@@ -7,6 +7,8 @@ import format = require('date-fns/format')
 import fs = require("fs");
 
 import Student from './student';
+import data from '../data.students.json';
+
 
 
 // function to encode file data to base64 encoded string
