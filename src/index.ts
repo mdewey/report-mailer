@@ -24,23 +24,21 @@ const _data:Array<{name:string, email:string}> =  require("../data/students.json
 const students:Array<Student> = _data.map(m => new Student(m.name, m.email));
 
 
-var today = format(
-    new Date(),
-    'MM/DD/YYYY'
-);
+var today = format(new Date(),'MM/DD/YYYY');
 
 students.forEach(student => {
-    const _fileName: string = `${student.firstName}.pdf`;
+    const _fileName: string = `${format(new Date(),'MM_DD_YYYY')} ${student.fullName}.pdf`;
     const _reportData: string = base64_encode(`${__dirname.replace("build", "data")}/reports/${_fileName}`);
     console.log({message:"sending email", student, _fileName})
     client.sendEmail({
         "From": "mark@suncoast.io",
+        "Bcc":"toni@suncoast.io",
         "To": student.email,
         "Subject": `Progress Report for ${today}`,
         "HtmlBody": `Hello, ${student.firstName} <br/> Attached is your progress report!`,
-        // "Attachments": [
-        //     new postmark.Attachment(_fileName, _reportData, "application/pdf")
-        // ]
+        "Attachments": [
+            new postmark.Attachment(_fileName, _reportData, "application/pdf")
+        ]
     }).then( _ => {
         console.log({message:"email sent", student:student.fullName});
     });
