@@ -31,8 +31,8 @@ students.forEach(student => {
     const _reportData: string = base64_encode(`${__dirname.replace("build", "data")}/reports/${_fileName}`);
     console.log({message:"sending email", student, _fileName})
     client.sendEmail({
-        "From": "mark@suncoast.io",
-        "Bcc":"toni@suncoast.io",
+        "From": process.env.FROM_EMAIL,
+        "Bcc":process.env.BBC_EMAIL || "",
         "To": student.email,
         "Subject": `Progress Report for ${today}`,
         "HtmlBody": `Hello, ${student.firstName} <br/> Attached is your progress report!`,
