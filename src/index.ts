@@ -1,6 +1,7 @@
 // Require:
 // Postmark stuff
 import postmark = require("postmark");
+
 const client = new postmark.ServerClient("d94d87f4-9883-4d13-bcbd-7b7fab6ea0f9");
 
 import format = require('date-fns/format')
@@ -28,13 +29,13 @@ var today = format(
 students.forEach(student => {
     const _fileName: string = `${student.firstName}.pdf`;
     const _reportData: string = base64_encode(`${__dirname.replace("build", "data")}\\reports\\${_fileName}`);
-    // client.sendEmail({
-    //     "From": "mark@suncoast.io",
-    //     "To": "mark@suncoast.io",
-    //     "Subject": `Progress Report for ${today}`,
-    //     "HtmlBody": `Hello, ${student.firstName} <br/> Attached is your progress report!`,
-    //     "Attachments": [
-    //         new postmark.Attachment(_fileName, _reportData, "application/pdf")
-    //     ]
-    // });
+    client.sendEmail({
+        "From": "mark@suncoast.io",
+        "To": "mark@suncoast.io",
+        "Subject": `Progress Report for ${today}`,
+        "HtmlBody": `Hello, ${student.firstName} <br/> Attached is your progress report!`,
+        "Attachments": [
+            new postmark.Attachment(_fileName, _reportData, "application/pdf")
+        ]
+    });
 })
