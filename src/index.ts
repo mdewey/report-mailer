@@ -27,7 +27,7 @@ const students:Array<Student> = _data.map(m => new Student(m.name, m.email));
 var today = format(new Date(),'MM/DD/YYYY');
 
 students.forEach(student => {
-    const _fileName: string = `${format(new Date(),'MM_DD_YYYY')} ${student.fullName}.pdf`;
+    const _fileName: string = `${format(new Date(),'M_DD_YYYY')} ${student.fullName}.pdf`;
     const _reportData: string = base64_encode(`${__dirname.replace("build", "data")}/reports/${_fileName}`);
     console.log({message:"sending email", student, _fileName})
     client.sendEmail({
